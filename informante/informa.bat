@@ -1,0 +1,2 @@
+python INFORMANTE.py
+pause
