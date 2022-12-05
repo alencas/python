@@ -41,7 +41,7 @@ def checkForUpdates():
 
 		if(  lastVersion > localVersion ):
 
-			URL = 'https://raw.githubusercontent.com/alencas/python/main/INFORMANTE.py'
+			URL = 'https://raw.githubusercontent.com/alencas/python/main/informante/INFORMANTE.py'
 
 			response = requests.get(URL)
 
