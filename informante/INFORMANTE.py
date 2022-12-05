@@ -7,16 +7,14 @@ import requests
 
 
 #PARAMETROS
-#AUTOR ANC
-
-#dropbox path
-dropbox_path = r'Dropbox'
-tmp_path = r'Temp'
-
 #linux o windows
 if 'nt' not in os.name:
+	tmp_path = r'Temp'
+	dropbox_path = r'Dropbox/COP/DICOM'
 	weasis_path = r'/opt/weasis/bin/Weasis'
 else:
+	tmp_path = r'Temp'
+	dropbox_path = r'Dropbox\\COP\\DICOM'
 	weasis_path = r'c:\\Program Files\\Weasis\\Weasis.exe'
 
 #patron de archivo que se va a mostrar en la lista de estudios
