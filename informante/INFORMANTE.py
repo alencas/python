@@ -8,8 +8,6 @@ import requests
 
 #PARAMETROS
 
-release = 3
-
 #dropbox path
 dropbox_path = r'Dropbox'
 tmp_path = r'Temp'
@@ -28,20 +26,30 @@ pattern = "*.zip"
 
 
 def checkForUpdates():
+	v = open("release", "r")
+	
+	localVersion = int(v.read())
+
+	v.close()
+
 	URL = 'https://raw.githubusercontent.com/alencas/python/main/informante/release'
 
 	try:
 		response = requests.get(URL)
 
-		lastRelease = int( response.text )
+		lastVersion = int( response.text )
 
-		if(  lastRelease > release ):
+		if(  lastVersion > localVersion ):
 
-			URL = 'https://raw.githubusercontent.com/alencas/python/main/informante/INFORMANTE.py'
+			URL = 'https://raw.githubusercontent.com/alencas/python/main/INFORMANTE.py'
 
 			response = requests.get(URL)
 
 			open("INFORMANTE.py", "wb").write(response.content)
+
+			v = open("release", "w")
+			
+			v.write( lastVersion )
 
 			return True
 		else:
