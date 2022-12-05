@@ -8,7 +8,7 @@ import requests
 
 #PARAMETROS
 
-release = 2
+release = 3
 
 #dropbox path
 dropbox_path = r'Dropbox'
@@ -98,6 +98,7 @@ def Update(data):
 #inicio
 if( checkForUpdates() ):
 	print ('Se actualizó la versión del programa! Por favor vuelva a ingresar.')
+	exit()
 
 #creo el lienzo de la app
 ws = Tk()
