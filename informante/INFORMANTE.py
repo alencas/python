@@ -27,37 +27,37 @@ pattern = "*.zip"
 
 
 def checkForUpdates():
-	v = open("release", "r")
-	
-	localVersion = int(v.read())
 
-	v.close()
-
+	localVersionFile = open("release", "r")
+	localVersion = int( localVersionFile.read() )
+	localVersionFile.close()
 	URL = 'https://raw.githubusercontent.com/alencas/python/main/informante/release'
 
 	try:
-		response = requests.get(URL)
-
-		lastVersion = int( response.text )
-
-		if(  lastVersion > localVersion ):
-
+		response = requests.get( URL )
+		remoteVersion = int( response.text )
+		
+		#si la version remota es mas nueva
+		if(  remoteVersion > localVersion and response.status_code == 200 ):
+			response.close()
 			URL = 'https://raw.githubusercontent.com/alencas/python/main/informante/INFORMANTE.py'
-
 			response = requests.get(URL)
-
 			open("INFORMANTE.py", "wb").write(response.content)
+			response.close()
 
-			v = open("release", "w")
-			
-			v.write( str(lastVersion) )
+			#actualizo el archivo de version
+			localVersionFile = open("release", "w")			
+			localVersionFile.write( str(remoteVersion) )
 
 			return True
+
 		else:
+			response.close()
 			return False
 
+
 	except OSError:
-		print('Algo salio mal!') 
+		print('Algo salio mal!')
 
 def onClose():
 	
