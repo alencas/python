@@ -49,7 +49,7 @@ def checkForUpdates():
 
 			v = open("release", "w")
 			
-			v.write( lastVersion )
+			v.write( str(lastVersion) )
 
 			return True
 		else:
