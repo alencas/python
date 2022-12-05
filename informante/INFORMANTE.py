@@ -7,6 +7,7 @@ import requests
 
 
 #PARAMETROS
+#AUTOR ANC
 
 #dropbox path
 dropbox_path = r'Dropbox'
