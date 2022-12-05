@@ -29,21 +29,15 @@ pattern = "*.zip"
 
 
 def checkForUpdates():
-	URL = 'https://raw.githubusercontent.com/alencas/python/main/version'
-
+	URL = 'https://raw.githubusercontent.com/alencas/python/main/release'
 	try:
 		response = requests.get(URL)
+		lastRelease = int(response)
 
-		lastRelease = str(response)
-
-		if(  int(response) > release ):
-
+		if(  lastRelease > release ):
 			URL = 'https://raw.githubusercontent.com/alencas/python/main/INFORMANTE.py'
-
 			response = requests.get(URL)
-
 			open("INFORMANTE.py", "wb").write(response.content)
-
 	except OSError:
 		print('Algo salio mal!')
 
