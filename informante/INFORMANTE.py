@@ -33,7 +33,7 @@ def checkForUpdates():
 	try:
 		response = requests.get(URL)
 
-		lastRelease = int( str(response.raw ) )
+		lastRelease = response.read().decode('utf-8')
 
 		if(  lastRelease > release ):
 
