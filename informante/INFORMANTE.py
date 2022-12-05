@@ -13,11 +13,9 @@ import requests
 dropbox_path = r'Dropbox'
 tmp_path = r'Temp'
 
-#linux
-if os.name != 'nt':
+#linux o windows
+if 'nt' not in os.name:
 	weasis_path = r'/opt/weasis/bin/Weasis'
-
-#windows
 else:
 	weasis_path = r'c:\\Program Files\\Weasis\\Weasis.exe'
 
