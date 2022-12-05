@@ -27,19 +27,28 @@ pattern = "*.zip"
 
 
 
-
 def checkForUpdates():
 	URL = 'https://raw.githubusercontent.com/alencas/python/main/release'
+
 	try:
 		response = requests.get(URL)
+
 		lastRelease = int(response)
 
 		if(  lastRelease > release ):
+
 			URL = 'https://raw.githubusercontent.com/alencas/python/main/INFORMANTE.py'
+
 			response = requests.get(URL)
+
 			open("INFORMANTE.py", "wb").write(response.content)
+
+			return True
+		else:
+			return False
+
 	except OSError:
-		print('Algo salio mal!')
+		print('Algo salio mal!') 
 
 def onClose():
 	
@@ -86,6 +95,9 @@ def Update(data):
 		listbox.insert('end', item)
 
 
+#inicio
+if( checkForUpdates() ):
+	print ('Se actualizó la versión del programa! Por favor vuelva a ingresar.')
 
 #creo el lienzo de la app
 ws = Tk()
