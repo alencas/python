@@ -28,7 +28,7 @@ pattern = "*.zip"
 
 
 def checkForUpdates():
-	URL = 'https://github.com/alencas/python/blob/7a1731e168358726101497e7bf9d1ccaa4a347d5/informante/release'
+	URL = 'https://raw.githubusercontent.com/alencas/python/main/informante/release'
 
 	try:
 		response = requests.get(URL)
