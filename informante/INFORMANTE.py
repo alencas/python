@@ -3,19 +3,49 @@ import os, fnmatch, shutil
 import subprocess
 from zipfile import ZipFile
 from os import remove
+import requests
 
 
 #PARAMETROS
+
+release = 2
+
 #dropbox path
 dropbox_path = r'Dropbox'
 tmp_path = r'Temp'
+
 #linux
-weasis_path = r'/opt/weasis/bin/Weasis'
+if os.name != 'nt':
+	weasis_path = r'/opt/weasis/bin/Weasis'
+
 #windows
-#weasis_path = r'c:\\Program Files\\Weasis\\Weasis.exe'
+else:
+	weasis_path = r'c:\\Program Files\\Weasis\\Weasis.exe'
+
 #patron de archivo que se va a mostrar en la lista de estudios
 pattern = "*.zip"
 
+
+
+
+def checkForUpdates():
+	URL = 'https://raw.githubusercontent.com/alencas/python/main/version'
+
+	try:
+		response = requests.get(URL)
+
+		lastRelease = str(response)
+
+		if(  int(response) > release ):
+
+			URL = 'https://raw.githubusercontent.com/alencas/python/main/INFORMANTE.py'
+
+			response = requests.get(URL)
+
+			open("INFORMANTE.py", "wb").write(response.content)
+
+	except OSError:
+		print('Algo salio mal!')
 
 def onClose():
 	
